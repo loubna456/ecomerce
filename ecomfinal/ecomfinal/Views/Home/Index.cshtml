@@ -1,0 +1,63 @@
+﻿@model ecomfinal.Models.Panier
+
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+
+
+
+<div class="text-center">
+    <div class="section-header">
+        <span>Produits</span>
+        <h2>Produits</h2>
+
+    </div>
+</div>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+   
+</head>
+
+<body>
+
+
+
+    <ul>
+        @if (ViewBag.Produits != null)
+        {
+            @foreach (var id in ViewBag.Produits)
+            {
+                <li>@id</li>
+                <div class="form-group">
+                    <form method="post" action="/Home/AddToCart">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group">
+                            <label asp-for="Quantite" class="control-label"></label>
+                            <input asp-for="Quantite" class="form-control" />
+                            <span asp-validation-for="Quantite" class="text-danger"></span>
+                        </div>
+                        <input type="hidden" name="productId" value="@id" />
+                        <input type="submit" value="Ajouter au panier" class="btn btn-primary" />
+                    </form>
+                </div>
+            }
+        }
+        else
+        {
+            <li>No products available</li>
+        }
+    </ul>
+
+    </table>
+    </thead>
+
+</body>
+
+
+</html>
